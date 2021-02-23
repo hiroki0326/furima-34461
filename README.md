@@ -4,15 +4,20 @@
 
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
-| email      | string | null: false |
-| password   | string | null: false |
-| full_name  | string | null: false |
-| birthday   | string | null: false |
+| email      | string | null: false, unique: true|
+| up_name    | string | null: false |
+| down_name  | string | null: false |
+| up_name_katakana | string | null: false |
+| down_name_katakana  | string | null: false |
+| birthday   | date | null: false |
 | nickname   | string | null: false |
+| encrypted_password  | string | null: false |
 
 ### Association
 - has_many :items
-- has_many :buys
+- has_many :orders
+- has_many :delivers
+
 
 ## itemsテーブル
 
@@ -20,33 +25,43 @@
 | --------------- | ------------- | ----------- |
 | item_name       | string        | null: false |
 | description     | text          | null: false |
-| category        | ActiveHash    | null: false |
-| delivery_fee    | ActiveHash    | null: false |
-| status          | ActiveHash    | null: false |
-| delivery_source | ActiveHash    | null: false |
-| days            | ActiveHash    | null: false |
+| category_id     | integer       | null: false |
+| delivery_fee_id | integer       | null: false |
+| status_id       | integer       | null: false |
+| delivery_source_id | integer    | null: false |
+| days_id         | integer       | null: false |
 | price           | integer       | null: false |
-| user            | reference     | null: false |
+| user            | reference     | null: false,foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :buy
+- has_one :order
+- has_one :deliver
 
-## buysテーブル
+## deliversテーブル
 
 | Column               | Type          | Options     |
 | -------------------- | ------------- | ----------- |
-| credit_card          | integer       | null: false |
-| credit_card_deadline | integer       | null: false |
-| security_code        | integer       | null: false |
 | postal_code          | integer       | null: false |
 | prefecture           | ActiveHash    | null: false |
 | municipalities       | string        | null: false |
 | address              | string        | null: false |
 | building_name        | string        | null: false |
 | phone_number         | integer       | null: false |
-| user                 | reference     | null: false |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
+- belongs_to :order
+
+## ordersテーブル
+
+| Column          | Type          | Options     |
+| --------------- | ------------- | ----------- |
+| user            | reference     | null: false,foreign_key: true |
+| item            | reference     | null: false,foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :deliver
