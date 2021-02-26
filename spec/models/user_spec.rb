@@ -17,59 +17,59 @@ RSpec.describe User, type: :model do
     end
 
     context '新規登録できないとき' do
-    it 'nicknameが空では登録できない' do
-      @user.nickname = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Nickname can't be blank"
-    end
-    it 'emailが空では登録できない' do
-      @user.email = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Email can't be blank"
-    end
-    it '重複したemailが存在する場合登録できない' do
-      @user.save
-      another_user = FactoryBot.build(:user)
-      another_user.email = @user.email
-      another_user.valid?
-      expect(another_user.errors.full_messages).to include('Email has already been taken')
-    end
-    it 'passwordが空では登録できない' do
-      @user.password = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Password can't be blank"
-    end
-    it 'passwordが5文字以下では登録できない' do
-      @user.password = '00000'
-      @user.password_confirmation = '00000'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
-    end
-    it 'up_nameが空では登録できない' do
-      @user.up_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Up name can't be blank"
-    end
-    it 'down_nameが空では登録できない' do
-      @user.down_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Down name can't be blank"
-    end
-    it 'up_name_katakanaが空では登録できない' do
-      @user.up_name_katakana = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Up name katakana can't be blank"
-    end
-    it 'down_name_katakanaが空では登録できない' do
-      @user.down_name_katakana = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Down name katakana can't be blank"
-    end
-    it 'birthdayが空では登録できない' do
-      @user.birthday = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Birthday can't be blank"
+      it 'nicknameが空では登録できない' do
+        @user.nickname = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Nickname can't be blank"
+      end
+      it 'emailが空では登録できない' do
+        @user.email = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email can't be blank"
+      end
+      it '重複したemailが存在する場合登録できない' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
+      end
+      it 'passwordが空では登録できない' do
+        @user.password = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password can't be blank"
+      end
+      it 'passwordが5文字以下では登録できない' do
+        @user.password = '00000'
+        @user.password_confirmation = '00000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+      end
+      it 'up_nameが空では登録できない' do
+        @user.up_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Up name can't be blank"
+      end
+      it 'down_nameが空では登録できない' do
+        @user.down_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Down name can't be blank"
+      end
+      it 'up_name_katakanaが空では登録できない' do
+        @user.up_name_katakana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Up name katakana can't be blank"
+      end
+      it 'down_name_katakanaが空では登録できない' do
+        @user.down_name_katakana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Down name katakana can't be blank"
+      end
+      it 'birthdayが空では登録できない' do
+        @user.birthday = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Birthday can't be blank"
+      end
     end
   end
-end
 end

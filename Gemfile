@@ -61,3 +61,5 @@ group :development do
 end
 
 gem 'devise'
+gem 'rubocop', require:false
+gem 'rubocop-rails', require:false
