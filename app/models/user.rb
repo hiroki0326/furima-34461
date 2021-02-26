@@ -6,10 +6,14 @@ class User < ApplicationRecord
   with_options presence: true do
   validates :nickname
   validates :email, uniqueness: true
-  validates :up_name, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/ }
-  validates :down_name, format: { with: /\A[ぁ-んァ-ヶ一-龥]+\z/ }
-  validates :up_name_katakana, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :down_name_katakana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ } do
+  validates :up_name
+  validates :down_name
+  end
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }do
+  validates :up_name_katakana
+  validates :down_name_katakana
+end
   validates :birthday
   validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
   end
