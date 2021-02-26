@@ -61,20 +61,40 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Up name can't be blank"
       end
+      it 'up_nameがカタカナorひらがなor漢字での入力がなければ登録できない' do
+        @user.up_name = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Up name is invalid"
+      end
       it 'down_nameが空では登録できない' do
         @user.down_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Down name can't be blank"
+      end
+      it 'down_nameがカタカナorひらがなor漢字での入力がなければ登録できない' do
+        @user.down_name = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Down name is invalid"
       end
       it 'up_name_katakanaが空では登録できない' do
         @user.up_name_katakana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Up name katakana can't be blank"
       end
+      it 'up_name_katakanaがカタカナでの入力でなければ登録できない' do
+        @user.up_name_katakana = 'あああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Up name katakana is invalid"
+      end
       it 'down_name_katakanaが空では登録できない' do
         @user.down_name_katakana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Down name katakana can't be blank"
+      end
+      it 'down_name_katakanaがカタカナでの入力でなければ登録できない' do
+        @user.down_name_katakana = 'あああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Down name katakana is invalid"
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
