@@ -76,14 +76,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Prefecture must be other than 1"
       end 
       it "発送日が空では保存できない" do
-        @item.days_id = ""
+        @item.day_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include "Days can't be blank", "Days is not a number"
+        expect(@item.errors.full_messages).to include "Day can't be blank", "Day is not a number"
       end 
       it "発送日のidに1が選択されている場合は出品できない" do
-        @item.days_id = 1
+        @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Days must be other than 1"
+        expect(@item.errors.full_messages).to include "Day must be other than 1"
       end 
       it "価格が空では保存できない" do
         @item.price = ""
