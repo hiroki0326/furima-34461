@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    Item.order("created_at DESC")
   end
 
   def destroy
