@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
 
   def index
+    @items = Item.all
   end
 
   def destroy
