@@ -1,0 +1,2 @@
+class DeliversController < ApplicationController
+end
