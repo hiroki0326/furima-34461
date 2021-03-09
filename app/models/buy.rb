@@ -8,7 +8,7 @@ class Buy
   validates :prefecture_id, numericality: { other_than: 1 }
   validates :municipalities
   validates :address
-  validates :phone_number, length: { maximum: 11 }
+  validates :phone_number, length: { maximum: 11 }, format: { with: /\A[0-9]+\z/ }
   validates :token
   validates :item_id
   validates :user_id

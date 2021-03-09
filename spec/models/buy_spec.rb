@@ -18,7 +18,7 @@ describe '購入機能' do
       expect(@buy).to be_valid
     end
     it 'phone_numberが11文字以下であれば登録できる' do
-      @buy.phone_number = 22222222222
+      @buy.phone_number = "22222222222"
       expect(@buy).to be_valid
     end
   end
@@ -67,6 +67,11 @@ describe '購入機能' do
       @buy.phone_number = "111111111111"
       @buy.valid?
       expect(@buy.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
+    end
+    it "電話番号が英数混合では購入できない" do
+      @buy.phone_number = "11111a11a11"
+      @buy.valid?
+      expect(@buy.errors.full_messages).to include "Phone number is invalid"
     end
     it "user_idが空では購入できない" do
       @buy.user_id = ""
