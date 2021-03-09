@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :path_order, only: [:index, :create]
   before_action :set_order, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
 
   def index 
     @buy = Buy.new
@@ -26,8 +27,6 @@ class OrdersController < ApplicationController
   def path_order
     if current_user.id == @item.user_id || @item.order.present?
       redirect_to root_path
-    elsif user_signed_in? == false
-      redirect_to new_user_session_path
     end
   end
 
