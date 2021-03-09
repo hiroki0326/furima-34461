@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def top_item
-    unless current_user.id == @item.user_id
+      if current_user.id != @item.user_id || @item.order.present?
       redirect_to action: :index
   end
 end
