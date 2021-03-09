@@ -1,8 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Order, type: :model do
+RSpec.describe Buy, type: :model do
 before do
-  @buy = FactoryBot.build(:buy)
+  @user = FactoryBot.create(:user)
+  @item = FactoryBot.create(:item)
+  @buy = FactoryBot.build(:buy, user_id: @user.id, item_id: @item.id )
+  sleep 0.5
 end
 
 describe '購入機能' do
